@@ -60,13 +60,6 @@ public class MySqlCatalogTable extends JDBCTable {
 		isAutoInc = autoInc;
 	}
 
-	public EList getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentWithInverseEList(TableConstraint.class, this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE);
-		}
-		return constraints;
-	}
-
 	public Index findIndexWithColumnName(String colName) {
 		EList eList = this.getIndex();
 		for (Iterator it = eList.iterator(); it.hasNext();) {

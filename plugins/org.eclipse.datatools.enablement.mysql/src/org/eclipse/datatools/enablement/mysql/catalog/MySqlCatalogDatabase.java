@@ -67,21 +67,21 @@ public class MySqlCatalogDatabase extends JDBCDatabase {
 	public EList getSchemas() {
 		synchronized (schemasLoaded) {
 			if(!schemasLoaded.booleanValue()) { 
-				if (schemas == null) {
-					schemas = new EObjectWithInverseResolvingEList(Schema.class, this,
-							SQLSchemaPackage.DATABASE__SCHEMAS,
-							SQLSchemaPackage.SCHEMA__DATABASE);
+				if(super.getSchemas().isEmpty())
+				{
 					Schema schema = new MySqlCatalogSchema();
 					schema.setName(getName());
-					schemas.add(schema);
+					super.getSchemas().add(schema);
 					schemasLoaded = Boolean.TRUE;
 				}
-				return this.schemas;
+				return super.getSchemas();
 			}
 		}
 		return super.getSchemas();
 	}
 
+	protected EList catalogs;
+	
 	public EList getCatalogs() {
 		synchronized (catalogsLoaded) {
 			if(!catalogsLoaded.booleanValue()) { 

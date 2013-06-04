@@ -43,7 +43,7 @@ public class MySqlCatalogForeignKey extends JDBCForeignKey {
 	public EList getEAnnotations() {
 		if (!this.eAnnotationLoaded)
 			this.loadEAnnotations();
-		return this.eAnnotations;
+		return super.getEAnnotations();
 	}
 
 	public Connection getConnection() {
